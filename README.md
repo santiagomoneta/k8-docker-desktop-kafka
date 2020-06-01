@@ -8,7 +8,7 @@ I am running the edge version of Docker. I read that you don't need the edge ver
 
 ### Prerequisits
 1. Docker
-2. Kubctl (brew install kubctl)
+2. Kubectl (brew install kubectl)
 3. Kafka tools (brew install Kafka -- don't start Kafka once the tools are installed).
 
 ## Installation/Run Instructions
@@ -19,7 +19,7 @@ I am running the edge version of Docker. I read that you don't need the edge ver
 5. In the root directory of this project run docker-compose pull.
 6. Deploy the docker-compose stack to Kubernetes like so: 
 ```docker stack deploy --compose-file docker-compose.yml kafka-stack```
-7. If kubctl was installed properly, you should be able to run these commands and see the running pods and services:
+7. If kubectl was installed properly, you should be able to run these commands and see the running pods and services:
 ```kubectl get svc ```
 ```kubectl get pods ```
 8. There are a few ways to clean up and start fresh. You can either remove the stack or, a bit more heavy, reset the Kubernetes cluster through the Docker preferences:
