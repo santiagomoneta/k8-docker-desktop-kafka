@@ -28,9 +28,8 @@ The main reason for this repo is simple way to startup Kafka in a local dev env 
 
 1. Docker ([link](https://docs.docker.com/get-docker/))
 2. Kubectl (`brew install kubectl`) 
-3. Kafka tools (`brew install Kafka` -- don't start Kafka once the tools are installed).
 
-# Prechecks
+# Pre-checks
 
 Confirm Kubernetes is enabled:
 - Click on the Docker icon on the top right menu bar click and select preferences. 
