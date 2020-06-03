@@ -20,14 +20,9 @@ This branch includes:
 - Zookeeper (**localhost:2181**)
 - Kafka Broker (**localhost:9092**)
 
-The **feature/confluent-tools** branch include:
-- Schema Registry (**localhost:8081**)
-- Kafka Connect (**localhost:8083**)
-- Kafka Proxy (**localhost:8082**)
-- Kafka KSQL
-
 ## Notes
 - There are many other methods to run Kubernetes locally including minikube (kinda big resource footprint), Kind (pretty awesome but very light), or many others. This is probably the quickest way to get Kubernetes going with Kafka.
+- Check the other **feature** branches for other options
 - This is meant to be run on MacOS
 
 # Prerequisites
