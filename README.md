@@ -15,10 +15,12 @@ The goal is to have a fully working Kafka ecosystem up and runnning in a blink o
 ---
 When you run the docker compose, the followinng items will be deployes:
 
+This branch includes:
+
 - Zookeeper (**localhost:2181**)
 - Kafka Broker (**localhost:9092**)
 
-**feature/confluent-tools** branch include:
+The **feature/confluent-tools** branch include:
 - Schema Registry (**localhost:8081**)
 - Kafka Connect (**localhost:8083**)
 - Kafka Proxy (**localhost:8082**)
