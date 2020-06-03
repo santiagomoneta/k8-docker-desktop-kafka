@@ -58,7 +58,7 @@ At this point you can start using the broker onn the ports 9092 for Kafka and 21
 
 # I want moar!
 
-if you want to dig into the Kubernetes dashboard, please do the following:
+If you want to manage applications running in the cluster and troubleshoot them, as well as manage the cluster itself:
 
 - Start the Kubernetes dashboard: ```kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml```
 ![enter image description here](https://i.imgur.com/rLnT1IF.jpg)
