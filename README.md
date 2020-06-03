@@ -13,19 +13,16 @@ The goal is to have a fully working Kafka ecosystem up and runnning in a blink o
 
 ### What does the docker image include? 
 ---
-When you run the docker compose, the followinng items will be deployes:
+When you run the docker compose script, the followinng items will be deployes:
 
 - Zookeeper (**localhost:2181**)
 - Kafka Broker (**localhost:9092**)
-
-**feature/confluent-tools** branch include:
 - Schema Registry (**localhost:8081**)
 - Kafka Connect (**localhost:8083**)
-- Kafka Proxy (**localhost:8082**)
-- Kafka KSQL
 
 ## Notes
 - There are many other methods to run Kubernetes locally including minikube (kinda big resource footprint), Kind (pretty awesome but very light), or many others. This is probably the quickest way to get Kubernetes going with Kafka.
+- For other features, check the **develop** branch
 - This is meant to be run on MacOS
 
 # Prerequisites
