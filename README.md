@@ -2,27 +2,31 @@
 
 # k8-docker-desktop-kafka
 
-![enter image description here](https://www.kaaproject.org/uploads/2018/10/client-on-host-kafka-in-docker-wrong.png)
+
+![enter image description here](https://miro.medium.com/max/1400/0*z3nQB8zQjQCRhrDG.png)
 
 ### What is this repo about? 
 ---
 Need to test Kafka and want to do it the good way? do it with a docker container!
 
-The goal is to have a fully working Kafka and Zookeeper broker up and runnning in a blink of an eye (maybe a few blinks actually) without makeing any significant installation on your local computer, and in the case you need to start from scrach.. is easy and run a few commands.
+The goal is to have a fully working Kafka ecosystem up and runnning in a blink of an eye (maybe a few blinks actually) without makeing any significant installation on your local computer, and in the case you need to start from scrach.. is easy and run a few commands.
 
 ### What does the docker image include? 
 ---
+When you run the docker compose, the followinng items will be deployes:
 
-This repo contains a docker-compose file for running Zookeeper and a Kafka broker. There are feature branches to extend the cluster to include Kafka Connect, Kafka Proxy, and Kafka KSQL (These are all Confluent tools).
-The main reason for this repo is simple way to startup Kafka in a local dev env running in Kubernetes.
+- Zookeeper (**localhost:2181**)
+- Kafka Broker (**localhost:9092**)
+
+**feature/confluent-tools** branch include:
+- Schema Registry (**localhost:8081**)
+- Kafka Connect (**localhost:8083**)
+- Kafka Proxy
+- Kafka KSQL
 
 ## Notes
 - There are many other methods to run Kubernetes locally including minikube (kinda big resource footprint), Kind (pretty awesome but very light), or many others. This is probably the quickest way to get Kubernetes going with Kafka.
-- To use other Confluent tools like Schema-Registry, Connect, and Kafka proxy, go to this release branch and refresh your Kubernetes environment with the docker-compose file on that branch. 
-``` feature/confluent-tools```
 - This is meant to be run on MacOS
-
-
 
 # Prerequisites
 
@@ -52,12 +56,15 @@ Confirm Kubernetes is enabled:
 - Run this commands to confirm the **pods** are up and running: ```kubectl get pods ```
 ![enter image description here](https://i.imgur.com/ZbsJ0cq.jpg)
 ---
-At this point you can start using the broker onn the ports 9092 for Kafka and 2181 for Zookeeper, there is a cool tool called [Conduktor](https://www.conduktor.io/) that can ease the kafka broker management with a nice GUI, give it a try:
+At this point you can start using the broker on the ports 9092 for Kafka and 2181 for Zookeeper, there is a cool tool called [Conduktor](https://www.conduktor.io/) that can ease the kafka broker management with a nice GUI, you can also setup the schema registry and kafka connectgive it a try:
 ![enter image description here](https://i.imgur.com/9pCnFru.jpg)
+
 
 # I want moar!
 
-If you want to manage applications running in the cluster and troubleshoot them, as well as manage the cluster itself:
+
+
+if you want to dig into the Kubernetes dashboard, please do the following:
 
 - Start the Kubernetes dashboard: ```kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml```
 ![enter image description here](https://i.imgur.com/rLnT1IF.jpg)
@@ -78,10 +85,11 @@ If you want to manage applications running in the cluster and troubleshoot them,
 
 # A fresh start
 
-In the case you want or need to clean up and start from scratch. You have 2 options:
+In the case you want or need to clean up and start from scratch. You have 3 options:
 - Remove the stack: ``` docker stack rm kafka-stack```
 - Manually:
-	- Open docker preferrences
-	- Go to yhe Kubernetes section
+	- Open docker preferences
+	- Go to the Kubernetes section
 	- Click on "Reset kuberneters cluster"
 	- Confirm the operation
+- Reset all (this will remove *everything*):  `docker system prune -a --volumes`  
