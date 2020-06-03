@@ -21,7 +21,7 @@ When you run the docker compose, the followinng items will be deployes:
 **feature/confluent-tools** branch include:
 - Schema Registry (**localhost:8081**)
 - Kafka Connect (**localhost:8083**)
-- Kafka Proxy
+- Kafka Proxy (**localhost:8082**)
 - Kafka KSQL
 
 ## Notes
