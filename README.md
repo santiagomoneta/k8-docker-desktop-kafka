@@ -41,8 +41,6 @@ Extras:
 Confirm Kubernetes is enabled:
 - Click on the Docker icon on the top right menu bar click and select preferences.
 - From the preferences menu, choose Kubernetes and confirm the checkbox next to Enable Kubernetes is check, if not... check it
-
-![enter image description here](https://i.imgur.com/5uJoQzI.jpg)
 - Apply and Restart
 
 # Instructions (part1): Stack deployment
