@@ -1,84 +1,81 @@
 
 
-# k8-docker-desktop-kafka
+# kubernetes Kafka Playground
 
 
 ![enter image description here](https://miro.medium.com/max/1400/0*z3nQB8zQjQCRhrDG.png)
 
-### What is this repo about? 
+### What is this repo about?
 ---
-Need to test Kafka and want to do it the good way? do it with a docker container!
+Need to test Kafka and some of its extra tools? do it with a docker container!
 
-The goal is to have a fully working Kafka ecosystem up and runnning in a blink of an eye (maybe a few blinks actually) without makeing any significant installation on your local computer, and in the case you need to start from scrach.. is easy and run a few commands.
+The goal is to have a fully working Kafka ecosystem up and running in a blink of an eye (maybe a few blinks actually) without making any significant installation on your local computer, and in the case you need to start from scratch.. is easy and run a few commands.
 
-### What does the docker image include? 
+### What does the docker container include?
 ---
-When you run the docker compose script, the followinng items will be deployes:
+When you deploy this container, the following items will be available to you:
 
-- Zookeeper (**localhost:2181**)
-- Kafka Broker (**localhost:9092**)
-- Schema Registry (**localhost:8081**)
-- Kafka Connect (**localhost:8083**)
+Main cluster:
+
+- Kafka Broker on port 9092
+- zookeeper on port 2181
+
+Extras:
+
+- schema-registry, port 8081 // UI o port 8086
+- Rest Proxy on port 8082 // Topics UI on port 8085
+- Kafka connect on port 8083 // UI on port 8084
+- KSQL on port 8088
+- PostgreSQL on port 5432
 
 ## Notes
-- There are many other methods to run Kubernetes locally including minikube (kinda big resource footprint), Kind (pretty awesome but very light), or many others. This is probably the quickest way to get Kubernetes going with Kafka.
-- For other features, check the **develop** branch
 - This is meant to be run on MacOS
 
-# Prerequisites
+# Software requirements:
 
 1. Docker ([link](https://docs.docker.com/get-docker/))
-2. Kubectl (`brew install kubectl`) 
+2. Kubectl ([link](https://kubernetes.io/docs/tasks/tools/install-kubectl/))
 
 # Pre-checks
 
 Confirm Kubernetes is enabled:
-- Click on the Docker icon on the top right menu bar click and select preferences. 
+- Click on the Docker icon on the top right menu bar click and select preferences.
 - From the preferences menu, choose Kubernetes and confirm the checkbox next to Enable Kubernetes is check, if not... check it
 
 ![enter image description here](https://i.imgur.com/5uJoQzI.jpg)
 - Apply and Restart
 
-# Instructions
+# Instructions (part1): Stack deployment
 
 - Download/Unzip or clone this repo to you computer
-- From a terminal, navigate to the root directory of this project run the commnand `docker-compose pull`
-![enter image description here](https://i.imgur.com/0r0x8sn.jpg)
+- From a terminal, navigate to the root directory of this project
+- Run the command `docker-compose pull` to get all the images needed
 - Deploy the docker-compose stack to Kubernetes like by running the command:
-```docker stack deploy --compose-file docker-compose.yml kafka-stack```
-![enter image description here](https://i.imgur.com/0a9sFuu.jpg)
+`docker stack deploy --compose-file docker-compose.yml myStackName`
 
-- Run this commands to confirm the **services** are up and running:  ```kubectl get svc ```
-![enter image description here](https://i.imgur.com/BU4yGQv.jpg)
-- Run this commands to confirm the **pods** are up and running: ```kubectl get pods ```
-![enter image description here](https://i.imgur.com/ZbsJ0cq.jpg)
----
-At this point you can start using the broker on the ports 9092 for Kafka and 2181 for Zookeeper, there is a cool tool called [Conduktor](https://www.conduktor.io/) that can ease the kafka broker management with a nice GUI, you can also setup the schema registry and kafka connectgive it a try:
-![enter image description here](https://i.imgur.com/9pCnFru.jpg)
-
-
-# I want moar!
-
-
+# Instructions (part2): Kubernetes Management
 
 if you want to dig into the Kubernetes dashboard, please do the following:
 
-- Start the Kubernetes dashboard: ```kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml```
-![enter image description here](https://i.imgur.com/rLnT1IF.jpg)
+- Start the Kubernetes dashboard:
 
-- Start the the web server: ``` kubectl proxy ```
-![enter image description here](https://i.imgur.com/xh183vY.jpg)
+`kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml`
 
-- Open a new terminal and get the token that we will use to authenticate on the web server: ``` kubectl -n kube-system describe secret default | grep "token:"```
-![enter image description here](https://i.imgur.com/KmKBfJq.jpg)
+- Start the the web server:
 
-- Open the web server and sign in with the token we got on the step above: 
-``` http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/ ```
-![enter image description here](https://i.imgur.com/KDJd2Fm.jpg)
+`kubectl proxy`
 
+- Open a new terminal and get the token that we will use to authenticate on the web server:
+
+`kubectl -n kube-system describe secret default | grep "token:"`
+
+- Open the web server and sign in with the token we got on the step above:
+
+`http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/`
 
 - Congratulations, you are good to go!
-![enter image description here](https://i.imgur.com/Oe3SwqX.png)
+
+At this point you can start using the main cluster, schema registry and kafka connect with a cool tool called [Conduktor](https://www.conduktor.io/) that can ease the kafka broker management with a nice GUI:
 
 # A fresh start
 
