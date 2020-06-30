@@ -33,7 +33,7 @@ Extras:
 
 # Software requirements:
 
-1. Docker ([link](https://docs.docker.com/get-docker/))
+1. Docker Desktop ([link](https://docs.docker.com/get-docker/))
 2. Kubectl ([link](https://kubernetes.io/docs/tasks/tools/install-kubectl/))
 
 # Pre-checks
